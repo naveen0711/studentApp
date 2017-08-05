@@ -1,0 +1,85 @@
+<div class="container">
+  <h2>Students List</h2>
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Roll Number</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stud of student">
+          <td>{{stud.Fname}}</td>
+          <td>{{stud.Lname}}</td>
+          <td>{{stud.RollNumber}}</td>
+          <td>{{stud.Age}}</td>
+          <td>{{stud.Gender}}</td>
+          <td>
+            <input type="button" (click)="Editstudent(stud)" class="btn btn-primary" value="Edit ">
+            <input type="button" (click)="deletestudent(stud._id)" value="Delete" class="btn btn-danger">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr/>
+  <div [hidden]="submitted">
+    <h1>Students Details</h1>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="Firstname" required [(ngModel)]="Fname">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last name</label>
+        <input type="text" class="form-control" name="lastname" required [(ngModel)]="Lname">
+      </div>
+      <div class="form-group">
+        <label for="rollNumber">Roll Number</label>
+        <input type="text" class="form-control" name="rollNumber" required [(ngModel)]="RollNumber">
+
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" name="age" required [(ngModel)]="Age">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="text" class="form-control" name="gender" required [(ngModel)]="Gender">
+      </div>
+      <input type="button" class="btn btn-primary" (click)="addnewStudent(); reset();" value="Enter Details!">
+      <button type="submit" class="btn btn-default">Get Details!</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9  pull-left">{{ Fname }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Last name</div>
+      <div class="col-xs-9 pull-left">{{ Lname }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Roll Number</div>
+      <div class="col-xs-9 pull-left">{{ RollNumber }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Age</div>
+      <div class="col-xs-9 pull-left">{{ Age }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Gender</div>
+      <div class="col-xs-9 pull-left">{{ Gender }}</div>
+    </div>
+
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+</div>
